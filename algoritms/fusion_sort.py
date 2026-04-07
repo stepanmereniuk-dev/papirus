@@ -53,3 +53,39 @@ class FusionSort:
     def trier(self):
         self._tri_fusion(0, len(self.data) - 1)
         self._sauvegarder()
+
+TEST_LIST = [12, 43, 0, -125, 9805, 54, 9014, 3, 1, 7]
+
+class TestMergeSort:
+    
+    def sort(lst):
+        if len(lst) <= 1:  # Stop reccursion
+            return lst
+        
+
+        mid = len(lst) // 2
+        left = lst[:mid]            
+        right = lst[mid:]         
+
+        left_sorted = TestMergeSort.sort(left)
+        right_sorted = TestMergeSort.sort(right)
+        
+        return TestMergeSort._merge(left_sorted, right_sorted)
+
+    def _merge(left, right):
+        result = []
+        i = 0
+        j = 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                result.append(left[i])
+                i += 1
+            else:
+                result.append(right[j])
+                j += 1
+        result.extend(left[i:])
+        result.extend(right[j:])
+        return result
+
+sorted_list = TestMergeSort.sort(TEST_LIST)
+print(sorted_list)

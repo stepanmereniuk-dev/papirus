@@ -33,3 +33,21 @@ class CombSort:
                     trie = False
 
             self._sauvegarder()
+
+TEST_LIST = [12,43,0,-125,9805,54,9014,3,1,7]
+
+class TestCombSort:
+    def sort(lst):
+        arr = list(lst)
+        n = len(arr)
+        gap = n
+        
+        while gap > 1:
+            gap = max(1, int(gap / 1.3))
+           
+            for i in range(n - gap):
+                if arr[i] > arr[i + gap]:
+                    arr[i], arr[i + gap] = arr[i + gap], arr[i]
+        
+        return arr
+print(TestCombSort.sort(TEST_LIST))

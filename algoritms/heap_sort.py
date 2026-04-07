@@ -42,3 +42,40 @@ class HeapSort:
             self.data[0], self.data[i] = self.data[i], self.data[0]
             self._tamiser(i, 0)
             self._sauvegarder()
+
+
+TEST_LIST = [12, 43, 0, -125, 9805, 54, 9014, 3, 1, 7]
+
+class TestHeapSort:
+    def sort(lst):
+        arr = list(lst)        
+        n = len(arr)
+        
+        # Max-Heap 
+        for i in range(n // 2 - 1, -1, -1):         # FROM END 
+            TestHeapSort._heapify(arr, n, i)
+
+        for i in range(n - 1, 0, -1):
+            arr[i], arr[0] = arr[0], arr[i]     
+            TestHeapSort._heapify(arr, i, 0)   
+        return arr
+    
+    
+    def _heapify(arr, n, i):
+        largest = i         
+        left = 2 * i + 1     
+        right = 2 * i + 2   
+        
+        if left < n and arr[left] > arr[largest]:
+            largest = left
+            
+        if right < n and arr[right] > arr[largest]:
+            largest = right
+
+        if largest != i:
+            arr[i], arr[largest] = arr[largest], arr[i]
+            TestHeapSort._heapify(arr, n, largest)  
+
+
+sorted_list = TestHeapSort.sort(TEST_LIST)
+print("Відсортований:", sorted_list)

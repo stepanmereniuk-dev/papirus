@@ -35,3 +35,19 @@ class FastSort:
     def trier(self):
         self._tri_rapide(0, len(self.data) - 1)
         self._sauvegarder()
+        
+TEST_LIST = [12,43,0,-125,9805,54,9014,3,1,7]
+
+class TestQuickSort:
+    def sort(lst):
+        if len(lst) <= 1: #Stop reccursion untile len of list == 1 
+            return lst
+        
+        pivot = lst[0]
+        
+        left = [x for x in lst if x < pivot]
+        equal = [x for x in lst if x == pivot]
+        right = [x for x in lst if x > pivot]
+        
+        return TestQuickSort.sort(left) + equal + TestQuickSort.sort(right)#reccursion \\
+print(TestQuickSort.sort(TEST_LIST))

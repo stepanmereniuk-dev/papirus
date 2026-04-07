@@ -26,3 +26,18 @@ class BubbleSort:
             self._sauvegarder()
             if not echange:
                 break
+            
+TEST_LIST = [12,43,0,-125,9805,54,9014,3,1,7]
+
+class TestBubbleSort:
+    def sort(list_to_sort:list):
+        arr = list(list_to_sort)
+        n = len(arr)
+        for i in range(n):
+            for j in range(0, n - i - 1):
+                if list_to_sort[j] > list_to_sort[j + 1]:
+                    list_to_sort[j], list_to_sort[j + 1] = list_to_sort[j + 1], list_to_sort[j]
+        
+        return list_to_sort
+    
+print(TestBubbleSort.sort(TEST_LIST))
